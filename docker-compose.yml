@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  safe:
+    build: .
+    container_name: c-playground-safe
+    working_dir: /workspace
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./:/workspace
+    # без лишних прав — для обычного C-кода, алгоритмов, структур данных
+
+  raw:
+    build: .
+    container_name: c-playground-raw
+    working_dir: /workspace
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./:/workspace
+    network_mode: "host"
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    # Этот сервис нужен для raw sockets / sniffing / ptrace-экспериментов.
+    # Не запускай на продовой машине.
+

@@ -1,55 +1,94 @@
-# Prerequisites
-*.d
-
-# Object files
+# ======================
+# Build artifacts
+# ======================
 *.o
-*.ko
+*.out
 *.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
+*.exe
 *.dll
 *.so
-*.so.*
-*.dylib
+*.a
+*.lib
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+# ======================
+# Compiled binaries
+# ======================
+a.out
+main
+app
+*.bin
+*.elf
 
-# Debug files
+# ======================
+# Debug and profiling
+# ======================
 *.dSYM/
-*.su
-*.idb
-*.pdb
+*.stackdump
+core
+core.*
+vgcore.*
+*.log
+*.trace
+*.gdb_history
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# ======================
+# Make / CMake / build systems
+# ======================
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile~
+*.make
+*.ninja
+.ninja_deps
+.ninja_log
 
-# debug information files
-*.dwo
+# ======================
+# Python helpers (если внутри контейнера что-то пускать)
+# ======================
+__pycache__/
+*.pyc
+*.pyo
+
+# ======================
+# Docker / local envs
+# ======================
+.env
+*.env
+.env.local
+docker-compose.override.yml
+
+# ======================
+# Editor / IDE
+# ======================
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# ======================
+# OS-specific junk
+# ======================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ======================
+# Temp & misc
+# ======================
+tmp/
+temp/
+*.bak
+*.tmp
+*.old
+*.orig
+*.save
+
+# ======================
+# Valgrind / GDB output dumps
+# ======================
+*.valgrind-out.txt
+*.gdbinit
