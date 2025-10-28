@@ -3,7 +3,6 @@ FROM debian:stable-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Устанавливаем тулчейн для разработки на C и полезные утилиты
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         build-essential \
@@ -22,19 +21,21 @@ RUN apt-get update && \
         sudo \
         python3 \
         python3-pip \
+        git \
+        clang-format \
     && rm -rf /var/lib/apt/lists/*
 
-# Создаем непривилегированного пользователя (чтобы по умолчанию не жить под root)
+# создаём непривилегированного пользователя,
+# чтобы файлы не были от root и чтобы жить безопаснее
 ARG USER=developer
 ARG UID=1000
 RUN useradd -m -u ${UID} -s /bin/bash ${USER} && \
     echo "${USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-# Рабочая директория
+# рабочая директория, в неё VS Code и make будут монтировать проект
 WORKDIR /workspace
 
-# По умолчанию будем заходить как обычный пользователь
+# по умолчанию будем работать не от root'а
 USER ${USER}
 
 CMD ["/bin/bash"]
-

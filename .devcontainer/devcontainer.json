@@ -1,0 +1,58 @@
+{
+  "name": "c-playground devcontainer",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": ".."
+  },
+
+  "workspaceFolder": "/workspace",
+
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind"
+  ],
+
+  "runArgs": [
+    "--cap-add=NET_RAW",
+    "--cap-add=NET_ADMIN",
+    "--cap-add=SYS_PTRACE",
+    "--security-opt=seccomp=unconfined",
+    "--network=host"
+  ],
+
+  "remoteUser": "developer",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-extension-pack",
+        "ms-vscode.makefile-tools",
+        "vadimcn.vscode-lldb",
+        "ms-azuretools.vscode-docker",
+        "llvm-vs-code-extensions.vscode-clangd"
+      ],
+      "settings": {
+        "C_Cpp.intelliSenseEngine": "disabled",
+        "clangd.arguments": [
+          "--header-insertion=never",
+          "--completion-style=detailed"
+        ],
+        // auto-format C при сохранении
+        "[c]": {
+          "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+          "editor.formatOnSave": true
+        },
+        "[cpp]": {
+          "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+          "editor.formatOnSave": true
+        }
+      }
+    }
+  },
+
+  "remoteEnv": {
+    "PLAYGROUND_MODE": "raw"
+  },
+
+  "postCreateCommand": "echo 'Devcontainer ready' && gcc --version && gdb --version"
+}
