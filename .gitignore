@@ -18,6 +18,9 @@ main
 app
 *.bin
 *.elf
+hello
+sniff
+ptrace_demo
 
 # ======================
 # Debug and profiling
@@ -45,14 +48,14 @@ Makefile~
 .ninja_log
 
 # ======================
-# Python helpers (если внутри контейнера что-то пускать)
+# Python helpers (если внутри контейнера когда-нибудь что-то пойдёт на python)
 # ======================
 __pycache__/
 *.pyc
 *.pyo
 
 # ======================
-# Docker / local envs
+# Docker / env
 # ======================
 .env
 *.env
@@ -70,7 +73,7 @@ docker-compose.override.yml
 *.sublime-project
 
 # ======================
-# OS-specific junk
+# OS junk
 # ======================
 .DS_Store
 Thumbs.db
